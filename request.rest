@@ -1,12 +1,22 @@
+# Login
+POST http://localhost:3000/auth/login
+CONTENT-TYPE: application/json
+
+{
+  "username": "john"
+}
+
+###
+
 # Get all posts for authenticated user
 GET http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
 
 ###
 
 # Create a new post
 POST http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
+Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
 CONTENT-TYPE: application/json
 
 {
@@ -16,45 +26,20 @@ CONTENT-TYPE: application/json
 
 ###
 
-# Update a post (replace :id with actual post ID)
-PUT http://localhost:3000/posts/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
+# Refresh token
+POST http://localhost:3000/auth/token
 CONTENT-TYPE: application/json
 
 {
-  "title": "Updated Post Title",
-  "content": "This is the updated content"
+  "token": "YOUR_REFRESH_TOKEN_HERE"
 }
 
 ###
 
-# Delete a post (replace :id with actual post ID)
-DELETE http://localhost:3000/posts/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
-
-###
-
-POST http://localhost:4000/token
+# Logout
+DELETE http://localhost:3000/auth/logout
 CONTENT-TYPE: application/json
 
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzEwNX0.VYhc6wrAygRkWgUE86TMvoW5SD22vuQMCLlNLTVhFTE"
-}
-
-###
-
-DELETE http://localhost:4000/logout
-CONTENT-TYPE: application/json
-
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzEwNX0.VYhc6wrAygRkWgUE86TMvoW5SD22vuQMCLlNLTVhFTE"
-}
-
-###
-
-POST http://localhost:4000/login
-CONTENT-TYPE: application/json
-
-{
-  "username": "john"
+  "token": "YOUR_REFRESH_TOKEN_HERE"
 }

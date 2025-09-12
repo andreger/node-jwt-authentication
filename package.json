@@ -1,9 +1,7 @@
 {
   "scripts": {
     "dev": "nodemon server.js",
-    "devAuth": "nodemon authServer.js",
-    "start": "node app.js",
-    "devApp": "nodemon app.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "dotenv": "^17.2.1",

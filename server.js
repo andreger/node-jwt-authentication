@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const sequelize = require("./config/database");
 const Post = require("./models/Post");
+const authRoutes = require("./routes/AuthRoutes"); // Add this import
 const postRoutes = require("./routes/PostRoutes");
 
 app.use(express.json());
@@ -40,7 +41,8 @@ async function initializeDatabase() {
   }
 }
 
-// Mount post routes
+// Mount routes
+app.use("/auth", authRoutes); // Add this line
 app.use("/posts", postRoutes);
 
 // Initialize database and start server
