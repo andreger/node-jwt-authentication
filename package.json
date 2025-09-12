@@ -6,7 +6,6 @@
     "devApp": "nodemon app.js"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "dotenv": "^17.2.1",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
