@@ -10,7 +10,7 @@ CONTENT-TYPE: application/json
 
 # Get all posts for authenticated user
 GET http://localhost:3000/posts
-Authorization: Bearer YOUR_ACCESS_TOKEN_HERE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NzcwNzI0NywiZXhwIjoxNzU3NzA4MTQ3fQ.WMP9ZxDM2mPhA91fgiR6gCPRkrxSOuU7_18gkjubYDk
 
 ###
 
