@@ -2,36 +2,50 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
-const jwt = require("jsonwebtoken");
+const sequelize = require("./config/database");
+const Post = require("./models/Post");
+const postRoutes = require("./routes/PostRoutes");
 
 app.use(express.json());
 
-const posts = [
-  {
-    username: "john",
-    title: "Post 1",
-  },
-  {
-    username: "jane",
-    title: "Post 2",
-  },
-];
+// Initialize database and create tables
+async function initializeDatabase() {
+  try {
+    await sequelize.authenticate();
+    console.log("Database connection established successfully.");
 
-app.get("/posts", authenticateToken, (req, res) => {
-  res.json(posts.filter((post) => post.username === req.user.name));
-});
+    // Sync the database (create tables if they don't exist)
+    await sequelize.sync();
+    console.log("Database synchronized successfully.");
 
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-
-  if (token == null) return res.sendStatus(401);
-
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
+    // Create some sample posts if the table is empty
+    const postCount = await Post.count();
+    if (postCount === 0) {
+      await Post.bulkCreate([
+        {
+          username: "john",
+          title: "Post 1",
+          content: "This is the content of post 1",
+        },
+        {
+          username: "jane",
+          title: "Post 2",
+          content: "This is the content of post 2",
+        },
+      ]);
+      console.log("Sample posts created.");
+    }
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
 }
 
-app.listen(3000);
+// Mount post routes
+app.use("/posts", postRoutes);
+
+// Initialize database and start server
+initializeDatabase().then(() => {
+  app.listen(3000, () => {
+    console.log("Server running on port 3000");
+  });
+});

@@ -1,5 +1,37 @@
+# Get all posts for authenticated user
 GET http://localhost:3000/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
+
+###
+
+# Create a new post
+POST http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
+CONTENT-TYPE: application/json
+
+{
+  "title": "My New Post",
+  "content": "This is the content of my new post"
+}
+
+###
+
+# Update a post (replace :id with actual post ID)
+PUT http://localhost:3000/posts/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
+CONTENT-TYPE: application/json
+
+{
+  "title": "Updated Post Title",
+  "content": "This is the updated content"
+}
+
+###
+
+# Delete a post (replace :id with actual post ID)
+DELETE http://localhost:3000/posts/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiam9obiIsImlhdCI6MTc1NjQwMzE4NywiZXhwIjoxNzU2NDAzMjA3fQ.8Pw4EvHhdTczKjnkHhNmgIFQF-Wqo63hNorL280Azz4
+
 ###
 
 POST http://localhost:4000/token
